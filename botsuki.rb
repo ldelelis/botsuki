@@ -41,7 +41,7 @@ end
 
 $bsuki.command :natsuki \
 do |event|
-  event.send_embed \
+  event.channel.send_embed \
   do |embed|
     embed.image = Discordrb::Webhooks::EmbedImage.new(
       url: 'https://cdn.discordapp.com/attachments/369266542463942656/369548682074390529/sleep_natsuki.gif')
@@ -50,7 +50,7 @@ end
 
 $bsuki.command :yuri \
 do |event|
-  event.send_embed \
+  event.channel.send_embed \
   do |embed|
     embed.image = Discordrb::Webhooks::EmbedImage.new(
       url: 'https://cdn.discordapp.com/attachments/369241481095020546/369551522583019540/BeyXDzd.png')
