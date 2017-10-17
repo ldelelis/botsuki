@@ -3,9 +3,9 @@ require 'simple-random'
 require 'marky_markov'
 require 'yaml'
 
-$config = YAML.load_file('config.yaml')
-$flavours = $config['flavoursFile']
-$poems = YAML.load_file('poems.yaml')
+$config = YAML.load_file(File.join(__dir__, 'config.yaml'))
+$flavours = File.join(__dir__, 'flavours.txt')
+$poems = YAML.load_file(File.join(__dir__, 'poems.yaml'))
 
 $bsuki = Discordrb::Commands::CommandBot.new(
   token: $config['token'],
@@ -37,7 +37,8 @@ do |event|
   markov.parse_file $flavours
   event.channel.send_message("Here's a #{markov.generate_n_words wordsToUse} \
 cupcake, <@#{event.author.id.to_s}>!")
-  puts markov.clear!
+  markov.clear!
+  return
 end
 
 $bsuki.command :natsuki \
