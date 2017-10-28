@@ -12,7 +12,7 @@ module Girls
     event.channel.send_embed \
     do |embed|
       embed.image = Discordrb::Webhooks::EmbedImage.new(
-        url: $config['monikammm'])
+        url: 'https://i.imgur.com/YhJKkyO.png')
     end
   end
 
