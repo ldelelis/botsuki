@@ -1,5 +1,6 @@
+#!/usr/bin/env ruby
+
 require 'discordrb'
-require 'simple-random'
 require 'marky_markov'
 require 'yaml'
 
