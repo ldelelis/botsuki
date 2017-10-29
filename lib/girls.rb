@@ -4,7 +4,7 @@ module Girls
 
   command(:sayori) \
   do |event|
-    event.channel.send_message('https://youtu.be/AYN99SqlXdl')
+    event.channel.send_message('https://youtu.be/AYN99SqIXdI')
   end
 
   command(:monika) \
