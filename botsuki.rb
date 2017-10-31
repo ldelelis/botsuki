@@ -3,6 +3,7 @@
 require 'discordrb'
 require 'marky_markov'
 require 'yaml'
+require 'fullwidth'
 
 require_relative 'lib/girls'
 require_relative 'lib/memes'

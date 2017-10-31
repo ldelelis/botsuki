@@ -11,4 +11,9 @@ module Memes
     end
   end
 
+  command(:fullwidth) \
+  do |event, *args|
+    args.join(' ').to_fullwidth
+  end
+
 end

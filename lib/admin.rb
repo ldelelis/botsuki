@@ -23,7 +23,7 @@ module Admin
     timeOut = fork do
       user = event.message.mentions[0].on('369241481095020544')
       user.add_role($config['timeoutRole'])
-      sleep (if args.length == 2 then args[2].to_i else 300 end)
+      sleep (if args.length > 1 then args[1].to_i else 300 end)
       user.remove_role($config['timeoutRole'])
     end
     Process.detach(timeOut)
