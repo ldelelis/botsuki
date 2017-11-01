@@ -6,7 +6,7 @@ module Yuri
   do |event|
     event.channel.send_embed \
     do |embed|
-      embed.image = Discorddb::Webhooks::EmbedImage.new(
+      embed.image = Discordrb::Webhooks::EmbedImage.new(
         url: 'https://i.redd.it/dtpzrynmprtz.jpg')
     end
   end
@@ -15,7 +15,7 @@ module Yuri
   do |event|
     event.channel.send_embed \
     do |embed|
-      embed.image = Discorddb::Webhooks::EmbedImage.new(
+      embed.image = Discordrb::Webhooks::EmbedImage.new(
         url: 'https://i.redd.it/b9s9jndwv7tz.jpg')
     end
   end
@@ -24,7 +24,7 @@ module Yuri
   do |event|
     event.channel.send_embed \
     do |embed|
-      embed.image = Discorddb::Webhooks::EmbedImage.new(
+      embed.image = Discordrb::Webhooks::EmbedImage.new(
         url: 'https://i.redd.it/fzqtoxg3mptz.jpg')
     end
   end
