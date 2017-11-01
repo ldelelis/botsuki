@@ -9,6 +9,7 @@ require_relative 'lib/girls'
 require_relative 'lib/memes'
 require_relative 'lib/natsuki'
 require_relative 'lib/admin'
+require_relative 'lib/yuri'
 
 
 $config = YAML.load_file(File.join(__dir__, 'config.yaml'))
@@ -25,6 +26,7 @@ $bsuki = Discordrb::Commands::CommandBot.new(
 $bsuki.include! Girls
 $bsuki.include! Memes
 $bsuki.include! Natsuki
+$bsuki.include! Yuri
 $bsuki.include! Admin
 
 
