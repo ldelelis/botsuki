@@ -1,6 +1,6 @@
 module Yuri
 
-  extend Discordrb::Commands::CommandBot
+  extend Discordrb::Commands::CommandContainer
 
   command(:trap) \
   do |event|
