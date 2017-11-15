@@ -1,5 +1,7 @@
 FROM ruby:2.4-alpine3.6
 
+MAINTAINER Lucio Delelis <ldelelis@est.frba.utn.edu.ar>
+
 RUN mkdir /usr/src/app
 
 COPY . /usr/src/app
@@ -11,4 +13,4 @@ RUN apk update && \
     bundle install --gemfile=/usr/src/app/Gemfile && \
     rm -rf /var/cache/apk/*
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["./botsuki.rb"]
