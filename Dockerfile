@@ -13,4 +13,4 @@ RUN apk update && \
     bundle install --gemfile=/usr/src/app/Gemfile && \
     rm -rf /var/cache/apk/*
 
-ENTRYPOINT ["./botsuki.rb"]
+ENTRYPOINT ["/usr/src/app/botsuki.rb"]
