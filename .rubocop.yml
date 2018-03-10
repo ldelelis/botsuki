@@ -10,5 +10,5 @@ Style/GlobalVars:
     - $config
     - $flavours
     - $poems
-    - $lastfm
+    - $last_fm_instance
     - $bsuki

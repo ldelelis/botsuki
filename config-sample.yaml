@@ -2,3 +2,5 @@
 token: 'tsample'
 prefix: 'psample'
 timeoutRole: 'rsample'
+lastfmApiKey: ''
+lastfmSharedSecret: ''

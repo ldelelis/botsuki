@@ -16,7 +16,7 @@ require_relative 'lib/fluff'
 $config = YAML.load_file(File.join(__dir__, 'config.yaml'))
 $flavours = File.join(__dir__, 'flavours.txt')
 $poems = YAML.load_file(File.join(__dir__, 'poems.yaml'))
-$lastfm = YAML.load_file(File.join(__dir__, 'lastfm.yaml'))
+$last_fm_instance = Lastfm.new($config['lastfmApiKey'], $config['lastfmSharedSecret'])
 
 $bsuki = Discordrb::Commands::CommandBot.new(
   token: $config['token'],
