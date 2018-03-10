@@ -10,7 +10,7 @@ WORKDIR /usr/src/app
 
 RUN apk update && \
     apk add ruby-dev build-base curl-dev && \
-    bundle install --deployment --path=/usr/src/app/ && \
+    bundle install --deployment && \
     rm -rf /var/cache/apk/*
 
-ENTRYPOINT ["/usr/src/app/botsuki.rb"]
+ENTRYPOINT ["./botsuki.rb"]
