@@ -2,22 +2,42 @@
 module Fluff
   extend Discordrb::Commands::CommandContainer
 
-  def add_last_fm_user(key, user)
-    @lastfm[key] = user
-    File.write(File.join(__dir__, '../lastfm.yaml'), @lastfm.to_yaml)
+  def _fail_no_user(event)
+    event.channel.send_message('You have not set a last.fm user. Run the command specifying one')
   end
 
-  module_function :add_last_fm_user
+  def add_last_fm_user(event, user)
+    @lastfm[event.author.id] = user
+    File.write(File.join(__dir__, '../lastfm.yaml'), @lastfm.to_yaml)
+    event.channel.send_message("Your last.fm user has been set to #{user}")
+  end
+
+  def generate_mosaic(event, size)
+    if @lastfm[event.author.id]
+      lfm_user = @lastfm[event.author.id]
+      event.channel.send_message("http://tapmusic.net/collage.php?user=#{lfm_user}&type=7day&size=#{size}&caption=true")
+    else
+      _fail_no_user(event)
+    end
+  end
+
+  module_function :add_last_fm_user, :generate_mosaic, :_fail_no_user
 
   command(:lastfm) do |event, *args|
     @lastfm = YAML.load_file(File.join(__dir__, '../lastfm.yaml'))
     if args.empty? && !(@lastfm.key? event.author.id)
-      event.channel.send_message('You have not set a last.fm user. Run the command specifying one')
+      _fail_no_user(event)
       return
     end
     unless args.empty?
-      add_last_fm_user(event.author.id, args[0].to_s)
-      event.channel.send_message("Your last.fm user has been set to #{args[0]}")
+      case args[0].to_s
+      when '3x3'
+        generate_mosaic(event, '3x3')
+      when '5x5'
+        generate_mosaic(event, '5x5')
+      else
+        add_last_fm_user(event, args[0].to_s)
+      end
       return
     end
     last_fm_user = @lastfm[event.author.id]

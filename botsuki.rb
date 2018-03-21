@@ -52,4 +52,9 @@ $poems.keys.each do |poem|
   end
 end
 
+$bsuki.command :postem do |event, *args|
+  args[0] = '5x5'
+  $bsuki.execute_command('lastfm'.to_sym, event, args)
+end
+
 $bsuki.run
