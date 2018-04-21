@@ -17,12 +17,16 @@ module Fluff
       lfm_user = @lastfm[event.author.id]
       tapmusic_domain = 'tapmusic.net'
       tapmusic_url = "/collage.php?user=#{lfm_user}&type=7day&size=#{size}&caption=true"
+
       message = event.channel.send_message("Generating collage for <@#{event.author.id}>...")
       collage = Tempfile.new('collage')
+
+      # Write the collage as a tempfile because tapmusic is bad with embeds
       Net::HTTP.start(tapmusic_domain) do |http|
         resp = http.get(tapmusic_url)
         collage.write(resp.body)
       end
+
       collage.close!
       message.edit('http://' + tapmusic_domain + tapmusic_url)
     else
@@ -39,14 +43,17 @@ module Fluff
       return
     end
     unless args.empty?
-      case args[0].to_s
-      when '3x3'
-        generate_mosaic(event, '3x3')
-      when '5x5'
-        generate_mosaic(event, '5x5')
-      else
-        add_last_fm_user(event, args[0].to_s)
+      lastfm = fork do
+        case args[0].to_s
+        when '3x3'
+          generate_mosaic(event, '3x3')
+        when '5x5'
+          generate_mosaic(event, '5x5')
+        else
+          add_last_fm_user(event, args[0].to_s)
+        end
       end
+      Process.detach(lastfm)
       return
     end
     last_fm_user = @lastfm[event.author.id]
