@@ -15,7 +15,16 @@ module Fluff
   def generate_mosaic(event, size)
     if @lastfm[event.author.id]
       lfm_user = @lastfm[event.author.id]
-      event.channel.send_message("http://tapmusic.net/collage.php?user=#{lfm_user}&type=7day&size=#{size}&caption=true")
+      tapmusic_domain = 'tapmusic.net'
+      tapmusic_url = "/collage.php?user=#{lfm_user}&type=7day&size=#{size}&caption=true"
+      message = event.channel.send_message("Generating collage for <@#{event.author.id}>...")
+      collage = Tempfile.new('collage')
+      Net::HTTP.start(tapmusic_domain) do |http|
+        resp = http.get(tapmusic_url)
+        collage.write(resp.body)
+      end
+      collage.close!
+      message.edit('http://' + tapmusic_domain + tapmusic_url)
     else
       _fail_no_user(event)
     end

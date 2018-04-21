@@ -4,6 +4,8 @@ require 'discordrb'
 require 'fullwidth'
 require 'lastfm'
 require 'marky_markov'
+require 'net/http'
+require 'tempfile'
 require 'yaml'
 
 require_relative 'lib/girls'
